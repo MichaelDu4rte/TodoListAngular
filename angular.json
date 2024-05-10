@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "contactapp": {
+    "todolist": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/contactapp",
+            "outputPath": "dist/todolist",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "contactapp:build:production"
+              "buildTarget": "todolist:build:production"
             },
             "development": {
-              "buildTarget": "contactapp:build:development"
+              "buildTarget": "todolist:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "contactapp:build"
+            "buildTarget": "todolist:build"
           }
         },
         "test": {
@@ -94,6 +94,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "todolist:build:production",
+              "serveTarget": "todolist:serve:production"
+            },
+            "development": {
+              "buildTarget": "todolist:build:development",
+              "serveTarget": "todolist:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
